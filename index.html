@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,8 +21,15 @@
 
 html{
   scroll-behavior:auto;
-  scrollbar-width:auto;
+  scrollbar-width:none;
   -webkit-overflow-scrolling:auto;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar{
+  width:0;
+  height:0;
+  display:none;
 }
 
 body{
@@ -49,7 +57,6 @@ body{
   z-index:100;
   color:#111;
   mix-blend-mode:multiply;
-  will-change:transform;
 }
 
 .logo{
@@ -105,7 +112,6 @@ body{
   letter-spacing:.15em;
 }
 
-
 /* =========================
    CINEMATIC SECTIONS
 ========================= */
@@ -127,15 +133,16 @@ body{
   isolation:isolate;
 }
 
-#canvas,
-#bedroomCanvas,
-#projectCanvas{
+.cinematic-video{
   position:absolute;
   inset:0;
   width:100%;
   height:100%;
+  object-fit:cover;
   display:block;
   pointer-events:none;
+  background:#111;
+  will-change:transform;
 }
 
 .overlay{
@@ -289,7 +296,6 @@ body{
   background:#111;
 }
 
-
 /* =========================
    GENERAL SECTIONS
 ========================= */
@@ -318,7 +324,6 @@ body{
   height:1px;
   background:#716961;
 }
-
 
 /* =========================
    STUDIO
@@ -364,7 +369,6 @@ body{
   line-height:1.8;
   color:#57514b;
 }
-
 
 /* =========================
    BEDROOM SEQUENCE
@@ -452,7 +456,6 @@ body{
   letter-spacing:.15em;
 }
 
-
 /* =========================
    SERVICES
 ========================= */
@@ -537,7 +540,6 @@ body{
   transform:translateX(8px);
 }
 
-
 /* =========================
    PROJECT
 ========================= */
@@ -581,7 +583,6 @@ body{
   );
 }
 
-
 /* =========================
    STATEMENT
 ========================= */
@@ -612,7 +613,6 @@ body{
   font-style:italic;
 }
 
-
 /* =========================
    FOOTER
 ========================= */
@@ -627,7 +627,6 @@ footer{
   letter-spacing:.12em;
   text-transform:uppercase;
 }
-
 
 /* =========================
    LOADER
@@ -714,6 +713,33 @@ footer{
   opacity:.55;
 }
 
+/* =========================
+   PAGE SCROLL PROGRESS
+========================= */
+
+#page-scroll-progress{
+  position:fixed;
+  top:0;
+  right:0;
+  width:8px;
+  height:100vh;
+  background:rgba(255,255,255,.28);
+  z-index:2147483647;
+  pointer-events:none;
+}
+
+#page-scroll-progress-bar{
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:0;
+  background:#8B1E3F;
+  box-shadow:
+    0 0 8px rgba(139,30,63,.65),
+    0 0 18px rgba(139,30,63,.35);
+  transform-origin:top;
+}
 
 /* =========================
    MOBILE
@@ -847,45 +873,6 @@ footer{
     padding:28px 6vw;
   }
 }
-
-html{
-  scrollbar-width:none;
-}
-
-html::-webkit-scrollbar{
-  width:0;
-  height:0;
-  display:none;
-}
-
-body::-webkit-scrollbar{
-  width:0;
-  height:0;
-  display:none;
-}
-#page-scroll-progress{
-  position:fixed;
-  top:0;
-  right:0;
-  width:8px;
-  height:100vh;
-  background:rgba(255,255,255,.28);
-  z-index:2147483647;
-  pointer-events:none;
-}
-
-#page-scroll-progress-bar{
-  position:absolute;
-  top:0;
-  left:0;
-  width:100%;
-  height:0;
-  background:#8B1E3F;
-  box-shadow:
-    0 0 8px rgba(139,30,63,.65),
-    0 0 18px rgba(139,30,63,.35);
-  transform-origin:top;
-}
 </style>
 </head>
 
@@ -896,500 +883,679 @@ body::-webkit-scrollbar{
 </div>
 
 <div id="site-loader">
-  <div class="loader-top"><span>INTERIOR / EXPERIENCE</span><span>EST. 2026</span></div>
-  <div class="loader-center">
-    <div class="loader-percent"><span id="loader-percent">0</span><span>%</span></div>
-    <div class="loader-line"><div id="loader-progress"></div></div>
-    <div class="loader-status" id="loader-status">INITIALIZING EXPERIENCE</div>
+
+  <div class="loader-top">
+    <span>INTERIOR / EXPERIENCE</span>
+    <span>EST. 2026</span>
   </div>
-  <div class="loader-bottom"><span>DESIGNING SPACES</span><span>PLEASE WAIT</span></div>
+
+  <div class="loader-center">
+
+    <div class="loader-percent">
+      <span id="loader-percent">0</span>
+      <span>%</span>
+    </div>
+
+    <div class="loader-line">
+      <div id="loader-progress"></div>
+    </div>
+
+    <div class="loader-status" id="loader-status">
+      INITIALIZING EXPERIENCE
+    </div>
+
+  </div>
+
+  <div class="loader-bottom">
+    <span>DESIGNING SPACES</span>
+    <span>PLEASE WAIT</span>
+  </div>
+
 </div>
 
 <nav class="navbar">
+
   <div class="logo">ATELIER</div>
+
   <ul class="nav-links">
-    <li><a href="#studio">Studio</a></li><li><a href="#bedroom">Bedroom</a></li><li><a href="#services">Services</a></li><li><a href="#project">Work</a></li><li><a href="#contact">Contact</a></li>
+
+    <li>
+      <a href="#studio">Studio</a>
+    </li>
+
+    <li>
+      <a href="#bedroom">Bedroom</a>
+    </li>
+
+    <li>
+      <a href="#services">Services</a>
+    </li>
+
+    <li>
+      <a href="#project">Work</a>
+    </li>
+
+    <li>
+      <a href="#contact">Contact</a>
+    </li>
+
   </ul>
-  <div class="menu">MENU</div>
+
+  <div class="menu">
+    MENU
+  </div>
+
 </nav>
 
+<!-- HERO -->
+
 <section class="hero">
+
   <div class="hero-sticky">
-    <canvas id="canvas"></canvas><div class="overlay"></div>
+
+    <video
+      id="heroVideo"
+      class="cinematic-video"
+      src="atelier-hero.mp4"
+      muted
+      playsinline
+      preload="auto"
+      disablepictureinpicture
+    ></video>
+
+    <div class="overlay"></div>
+
     <div class="hero-content">
-      <div class="eyebrow">Interior Architecture · 2026</div>
-      <h1 class="hero-title"><span class="title-line"><span>Spaces</span></span><span class="title-line"><span>That Feel</span></span><span class="title-line"><span>Alive.</span></span></h1>
-      <p class="hero-description">Bespoke interiors shaped around light, material, proportion and the way you live.</p>
+
+      <div class="eyebrow">
+        Interior Architecture · 2026
+      </div>
+
+      <h1 class="hero-title">
+
+        <span class="title-line">
+          <span>Spaces</span>
+        </span>
+
+        <span class="title-line">
+          <span>That Feel</span>
+        </span>
+
+        <span class="title-line">
+          <span>Alive.</span>
+        </span>
+
+      </h1>
+
+      <p class="hero-description">
+        Bespoke interiors shaped around light, material,
+        proportion and the way you live.
+      </p>
+
     </div>
-    <div class="scroll-indicator"><span class="scroll-line"></span>Scroll to explore</div>
+
+    <div class="scroll-indicator">
+      <span class="scroll-line"></span>
+      Scroll to explore
+    </div>
+
   </div>
+
 </section>
+
+<!-- STUDIO -->
 
 <section class="section studio" id="studio">
-  <div><div class="section-label">The Studio</div><p class="studio-side">Karachi · Pakistan<br>Interior Architecture<br>Residential · Hospitality</p></div>
-  <div class="studio-main"><h2 class="studio-heading">We create spaces with <em>quiet character.</em></h2><p class="studio-copy">ATELIER is an interior architecture studio focused on creating thoughtful, timeless environments.<br><br>We work with light, texture, proportion and natural materials to create spaces that feel considered rather than decorated.<br><br>From the first sketch to the final detail, every element is designed to belong.</p></div>
+
+  <div>
+
+    <div class="section-label">
+      The Studio
+    </div>
+
+    <p class="studio-side">
+      Karachi · Pakistan<br>
+      Interior Architecture<br>
+      Residential · Hospitality
+    </p>
+
+  </div>
+
+  <div class="studio-main">
+
+    <h2 class="studio-heading">
+      We create spaces with
+      <em>quiet character.</em>
+    </h2>
+
+    <p class="studio-copy">
+
+      ATELIER is an interior architecture studio focused
+      on creating thoughtful, timeless environments.
+
+      <br><br>
+
+      We work with light, texture, proportion and natural
+      materials to create spaces that feel considered
+      rather than decorated.
+
+      <br><br>
+
+      From the first sketch to the final detail,
+      every element is designed to belong.
+
+    </p>
+
+  </div>
+
 </section>
+
+<!-- BEDROOM -->
 
 <section class="bedroom-sequence" id="bedroom">
+
   <div class="bedroom-sticky">
-    <canvas id="bedroomCanvas"></canvas><div class="bedroom-overlay"></div>
-    <div class="bedroom-content"><div class="bedroom-label">Private Residence · 02</div><h2 class="bedroom-title">A quieter<br>kind of luxury.</h2><p class="bedroom-meta">Master Bedroom<br>Natural Oak · Limestone · Linen<br>Karachi · 2026</p></div>
-    <div class="bedroom-number">02 / 03</div>
+
+    <video
+      id="bedroomVideo"
+      class="cinematic-video"
+      src="atelier-bedroom.mp4"
+      muted
+      playsinline
+      preload="auto"
+      disablepictureinpicture
+    ></video>
+
+    <div class="bedroom-overlay"></div>
+
+    <div class="bedroom-content">
+
+      <div class="bedroom-label">
+        Private Residence · 02
+      </div>
+
+      <h2 class="bedroom-title">
+        A quieter<br>
+        kind of luxury.
+      </h2>
+
+      <p class="bedroom-meta">
+        Master Bedroom<br>
+        Natural Oak · Limestone · Linen<br>
+        Karachi · 2026
+      </p>
+
+    </div>
+
+    <div class="bedroom-number">
+      02 / 03
+    </div>
+
   </div>
+
 </section>
+
+<!-- SERVICES -->
 
 <section class="section services" id="services">
-  <div class="section-label">What We Do</div>
-  <div class="services-header"><h2 class="services-heading">Services.</h2><p class="services-intro">From complete spatial concepts to the final layer of detail, we shape every part of the environment.</p></div>
-  <div class="service-list">
-    <div class="service-item"><span class="service-number">01</span><h3 class="service-name">Interior Architecture</h3><p class="service-description">Spatial planning, material direction, architectural detailing and complete interior concepts.</p><span class="service-arrow">↗</span></div>
-    <div class="service-item"><span class="service-number">02</span><h3 class="service-name">Residential Design</h3><p class="service-description">Tailored homes designed around personality, lifestyle, light and everyday rituals.</p><span class="service-arrow">↗</span></div>
-    <div class="service-item"><span class="service-number">03</span><h3 class="service-name">Hospitality</h3><p class="service-description">Distinctive environments for hotels, restaurants and spaces built around experience.</p><span class="service-arrow">↗</span></div>
-    <div class="service-item"><span class="service-number">04</span><h3 class="service-name">Styling &amp; Curation</h3><p class="service-description">Furniture, art, objects and final details that complete the atmosphere.</p><span class="service-arrow">↗</span></div>
+
+  <div class="section-label">
+    What We Do
   </div>
+
+  <div class="services-header">
+
+    <h2 class="services-heading">
+      Services.
+    </h2>
+
+    <p class="services-intro">
+      From complete spatial concepts to the final layer
+      of detail, we shape every part of the environment.
+    </p>
+
+  </div>
+
+  <div class="service-list">
+
+    <div class="service-item">
+
+      <span class="service-number">
+        01
+      </span>
+
+      <h3 class="service-name">
+        Interior Architecture
+      </h3>
+
+      <p class="service-description">
+        Spatial planning, material direction,
+        architectural detailing and complete
+        interior concepts.
+      </p>
+
+      <span class="service-arrow">
+        ↗
+      </span>
+
+    </div>
+
+    <div class="service-item">
+
+      <span class="service-number">
+        02
+      </span>
+
+      <h3 class="service-name">
+        Residential Design
+      </h3>
+
+      <p class="service-description">
+        Tailored homes designed around personality,
+        lifestyle, light and everyday rituals.
+      </p>
+
+      <span class="service-arrow">
+        ↗
+      </span>
+
+    </div>
+
+    <div class="service-item">
+
+      <span class="service-number">
+        03
+      </span>
+
+      <h3 class="service-name">
+        Hospitality
+      </h3>
+
+      <p class="service-description">
+        Distinctive environments for hotels,
+        restaurants and spaces built around experience.
+      </p>
+
+      <span class="service-arrow">
+        ↗
+      </span>
+
+    </div>
+
+    <div class="service-item">
+
+      <span class="service-number">
+        04
+      </span>
+
+      <h3 class="service-name">
+        Styling &amp; Curation
+      </h3>
+
+      <p class="service-description">
+        Furniture, art, objects and final details
+        that complete the atmosphere.
+      </p>
+
+      <span class="service-arrow">
+        ↗
+      </span>
+
+    </div>
+
+  </div>
+
 </section>
+
+<!-- PROJECT -->
 
 <section class="project-sequence" id="project">
+
   <div class="project-sticky">
-    <canvas id="projectCanvas"></canvas><div class="project-overlay"></div>
-    <div class="project-content"><div class="project-label">Selected Work · 01</div><h2 class="project-title">Casa<br>No. 04</h2><p class="project-meta">Karachi · Pakistan<br>Residential Interior<br>2026</p></div>
-    <div class="project-number">01 / 01</div>
+
+    <video
+      id="projectVideo"
+      class="cinematic-video"
+      src="atelier-projects.mp4"
+      muted
+      playsinline
+      preload="auto"
+      disablepictureinpicture
+    ></video>
+
+    <div class="project-overlay"></div>
+
+    <div class="project-content">
+
+      <div class="project-label">
+        Selected Work · 01
+      </div>
+
+      <h2 class="project-title">
+        Casa<br>
+        No. 04
+      </h2>
+
+      <p class="project-meta">
+        Karachi · Pakistan<br>
+        Residential Interior<br>
+        2026
+      </p>
+
+    </div>
+
+    <div class="project-number">
+      01 / 01
+    </div>
+
   </div>
+
 </section>
 
-<section class="section statement" id="contact"><div class="statement-inner"><p>Good design doesn't ask for attention.<br><br>It simply makes you <span>feel something.</span></p></div></section>
-<footer><span>ATELIER © 2026</span><span>Interior Architecture</span></footer>
+<!-- STATEMENT -->
+
+<section class="section statement" id="contact">
+
+  <div class="statement-inner">
+
+    <p>
+      Good design doesn't ask for attention.
+      <br><br>
+      It simply makes you
+      <span>feel something.</span>
+    </p>
+
+  </div>
+
+</section>
+
+<footer>
+
+  <span>
+    ATELIER © 2026
+  </span>
+
+  <span>
+    Interior Architecture
+  </span>
+
+</footer>
 
 <script>
 
-console.log("[ATELIER] clean frame engine started");
-
 /* =========================================================
-   CONFIG
+   ATELIER VIDEO ENGINE
 ========================================================= */
 
-const CONFIG = {
+console.log("[ATELIER] video engine started");
 
-  hero: {
-    total: 145,
-    path: i => `frames/ezgif-frame-${String(i).padStart(3,"0")}.jpg`,
-    textFrame: 27,
-    sequence: ".hero",
-    content: ".hero-content",
-    canvas: "#canvas"
+
+/* =========================================================
+   CONFIGURATION
+========================================================= */
+
+const VIDEO_CONFIG = {
+
+  hero:{
+    video:document.getElementById("heroVideo"),
+    section:document.querySelector(".hero"),
+    content:document.querySelector(".hero-content"),
+    reveal:.08
   },
 
-  bedroom: {
-    total: 610,
-    path: i => `frames3/frame-${String(i).padStart(3,"0")}.webp`,
-    textProgress: .10,
-    sequence: ".bedroom-sequence",
-    content: ".bedroom-content",
-    canvas: "#bedroomCanvas"
+  bedroom:{
+    video:document.getElementById("bedroomVideo"),
+    section:document.querySelector(".bedroom-sequence"),
+    content:document.querySelector(".bedroom-content"),
+    reveal:.10
   },
 
-  project: {
-    total: 330,
-    path: i => `frames2/frame-${String(i).padStart(3,"0")}.png`,
-    textProgress: .08,
-    sequence: ".project-sequence",
-    content: ".project-content",
-    canvas: "#projectCanvas"
+  project:{
+    video:document.getElementById("projectVideo"),
+    section:document.querySelector(".project-sequence"),
+    content:document.querySelector(".project-content"),
+    reveal:.08
   }
 
 };
 
 
 /* =========================================================
-   FRAME SEQUENCES
+   VIDEO STATE
 ========================================================= */
 
-const sequences = {};
-const resizeJobs = [];
+const videoStates = {};
 
+Object.entries(VIDEO_CONFIG).forEach(
+  ([key,config])=>{
 
-function createFrameSequence(key){
+    const video =
+      config.video;
 
-  const config = CONFIG[key];
+    videoStates[key] = {
 
-  const canvas =
-    document.querySelector(config.canvas);
+      targetTime:0,
 
-  const sequence =
-    document.querySelector(config.sequence);
+      currentTime:0,
 
-  const content =
-    document.querySelector(config.content);
+      duration:0,
 
-  if(!canvas || !sequence || !content){
+      ready:false,
 
-    console.error(
-      `[ATELIER] Missing elements for ${key}`
-    );
+      visible:false
 
-    return;
+    };
 
-  }
 
+    video.addEventListener(
+      "loadedmetadata",
+      ()=>{
 
-  const ctx =
-    canvas.getContext("2d");
+        videoStates[key].duration =
+          video.duration || 0;
 
+        videoStates[key].ready =
+          true;
 
-  const images =
-    new Array(config.total);
+        video.currentTime =
+          0;
 
-
-  let currentFrame = 0;
-  let currentImage = null;
-  let visible = false;
-
-
-  /* =====================================================
-     DRAW FRAME
-  ===================================================== */
-
-  function draw(){
-
-    if(!currentImage)
-      return;
-
-
-    const width =
-      canvas.width;
-
-    const height =
-      canvas.height;
-
-
-    const imageWidth =
-      currentImage.naturalWidth ||
-      currentImage.width;
-
-
-    const imageHeight =
-      currentImage.naturalHeight ||
-      currentImage.height;
-
-
-    if(!imageWidth || !imageHeight)
-      return;
-
-
-    /*
-     * COVER
-     * Same behavior as a cinematic full-screen image.
-     */
-
-    const imageRatio =
-      imageWidth / imageHeight;
-
-    const canvasRatio =
-      width / height;
-
-
-    let drawWidth;
-    let drawHeight;
-    let offsetX;
-    let offsetY;
-
-
-    if(imageRatio > canvasRatio){
-
-      drawHeight = height;
-
-      drawWidth =
-        height * imageRatio;
-
-      offsetX =
-        (width - drawWidth) / 2;
-
-      offsetY = 0;
-
-    }else{
-
-      drawWidth = width;
-
-      drawHeight =
-        width / imageRatio;
-
-      offsetX = 0;
-
-      offsetY =
-        (height - drawHeight) / 2;
-
-    }
-
-
-    ctx.clearRect(
-      0,
-      0,
-      width,
-      height
-    );
-
-
-    ctx.drawImage(
-      currentImage,
-      offsetX,
-      offsetY,
-      drawWidth,
-      drawHeight
-    );
-
-  }
-
-
-  /* =====================================================
-     LOAD IMAGES
-  ===================================================== */
-
-  function load(){
-
-    for(
-      let i = 1;
-      i <= config.total;
-      i++
-    ){
-
-      const img =
-        new Image();
-
-
-      img.decoding =
-        "async";
-
-
-      img.src =
-        config.path(i);
-
-
-      img.onload = ()=>{
-
-        images[i - 1] =
-          img;
-
-
-        /*
-         * Show first frame immediately.
-         */
-
-        if(i === 1){
-
-          currentImage =
-            img;
-
-          currentFrame =
-            0;
-
-          draw();
-
-        }
-
-      };
-
-
-      img.onerror = ()=>{
-
-        console.warn(
-          `[ATELIER] Failed to load frame ${i} for ${key}`
+        console.log(
+          `[ATELIER] ${key} ready`
         );
 
-      };
-
-    }
-
-  }
-
-
-  /* =====================================================
-     RESIZE
-  ===================================================== */
-
-  function resize(){
-
-    const width =
-      window.innerWidth;
-
-    const height =
-      window.innerHeight;
-
-
-    const dpr =
-      Math.min(
-        window.devicePixelRatio || 1,
-        2
-      );
-
-
-    canvas.width =
-      width * dpr;
-
-    canvas.height =
-      height * dpr;
-
-
-    canvas.style.width =
-      width + "px";
-
-    canvas.style.height =
-      height + "px";
-
-
-    ctx.setTransform(
-      dpr,
-      0,
-      0,
-      dpr,
-      0,
-      0
+      }
     );
 
-
-    draw();
-
   }
+);
 
 
-  /* =====================================================
-     SCROLL → FRAME
-  ===================================================== */
+/* =========================================================
+   SECTION PROGRESS
+========================================================= */
 
-  function update(){
+function getProgress(section){
 
-    const distance =
-      sequence.offsetHeight -
-      window.innerHeight;
+  const distance =
+    section.offsetHeight -
+    window.innerHeight;
 
-
-    if(distance <= 0)
-      return;
-
-
-    const rect =
-      sequence.getBoundingClientRect();
+  if(distance <= 0)
+    return 0;
 
 
-    const progress =
-      Math.min(
-        Math.max(
-          -rect.top,
-          0
-        ),
-        distance
-      ) / distance;
+  const rect =
+    section.getBoundingClientRect();
 
 
-    const frame =
-      Math.min(
-        config.total - 1,
-        Math.floor(
-          progress *
-          (config.total - 1)
-        )
-      );
-
-
-    if(
-      frame !== currentFrame &&
-      images[frame]
-    ){
-
-      currentFrame =
-        frame;
-
-      currentImage =
-        images[frame];
-
-      draw();
-
-    }
-
-
-    /*
-     * Text reveal
-     */
-
-    const shouldShow =
-      key === "hero"
-        ? currentFrame >= config.textFrame
-        : progress > config.textProgress;
-
-
-    if(
-      shouldShow !== visible
-    ){
-
-      visible =
-        shouldShow;
-
-      content.classList.toggle(
-        "visible",
-        visible
-      );
-
-    }
-
-  }
-
-
-  /* =====================================================
-     STORE
-  ===================================================== */
-
-  sequences[key] = {
-
-    load,
-    resize,
-    update,
-    draw
-
-  };
-
-
-  resizeJobs.push(resize);
+  return Math.min(
+    1,
+    Math.max(
+      0,
+      -rect.top / distance
+    )
+  );
 
 }
 
 
 /* =========================================================
-   CREATE SEQUENCES
+   TARGET VIDEO TIMES
 ========================================================= */
 
-createFrameSequence("hero");
+function updateTargets(){
 
-createFrameSequence("bedroom");
+  Object.entries(VIDEO_CONFIG).forEach(
+    ([key,config])=>{
 
-createFrameSequence("project");
+      const state =
+        videoStates[key];
+
+
+      if(!state.ready)
+        return;
+
+
+      const progress =
+        getProgress(
+          config.section
+        );
+
+
+      const duration =
+        state.duration;
+
+
+      if(!duration)
+        return;
+
+
+      state.targetTime =
+        Math.min(
+          duration - .001,
+          Math.max(
+            0,
+            progress * duration
+          )
+        );
+
+
+      const shouldShow =
+        progress >= config.reveal &&
+        progress < .94;
+
+
+      if(
+        shouldShow !==
+        state.visible
+      ){
+
+        state.visible =
+          shouldShow;
+
+
+        config.content.classList.toggle(
+          "visible",
+          shouldShow
+        );
+
+      }
+
+    }
+  );
+
+}
 
 
 /* =========================================================
-   SCROLL ENGINE
+   SMOOTH VIDEO SEEKING
 ========================================================= */
 
-let ticking = false;
+function animateVideos(){
+
+  Object.entries(VIDEO_CONFIG).forEach(
+    ([key,config])=>{
+
+      const state =
+        videoStates[key];
+
+      const video =
+        config.video;
+
+
+      if(!state.ready)
+        return;
+
+
+      const difference =
+        state.targetTime -
+        state.currentTime;
+
+
+      state.currentTime +=
+        difference * .20;
+
+
+      if(
+        Math.abs(
+          video.currentTime -
+          state.currentTime
+        ) > .015
+      ){
+
+        try{
+
+          video.currentTime =
+            state.currentTime;
+
+        }catch(error){
+
+          /* Browser temporarily rejected seek. */
+
+        }
+
+      }
+
+    }
+  );
+
+
+  requestAnimationFrame(
+    animateVideos
+  );
+
+}
+
+
+/* =========================================================
+   SCROLL
+========================================================= */
+
+let scrollTicking =
+  false;
 
 
 function handleScroll(){
 
-  if(ticking)
+  if(scrollTicking)
     return;
 
 
-  ticking = true;
+  scrollTicking =
+    true;
 
 
-  requestAnimationFrame(()=>{
+  requestAnimationFrame(
+    ()=>{
 
-    sequences.hero.update();
+      updateTargets();
 
-    sequences.bedroom.update();
+      scrollTicking =
+        false;
 
-    sequences.project.update();
-
-    ticking = false;
-
-  });
+    }
+  );
 
 }
 
@@ -1409,33 +1575,17 @@ window.addEventListener(
 
 window.addEventListener(
   "resize",
-  ()=>{
-
-    resizeJobs.forEach(
-      resize => resize()
-    );
-
-    handleScroll();
-
-  }
+  handleScroll
 );
 
 
 /* =========================================================
-   START FRAME LOADING
+   START ENGINE
 ========================================================= */
 
-sequences.hero.load();
-
-sequences.bedroom.load();
-
-sequences.project.load();
-
-
-resizeJobs.forEach(
-  resize => resize()
+requestAnimationFrame(
+  animateVideos
 );
-
 
 handleScroll();
 
@@ -1444,10 +1594,7 @@ handleScroll();
    SITE LOADER
 ========================================================= */
 
-console.log("[ATELIER] loader initialized");
-
-
-(()=>{
+(function(){
 
   const loader =
     document.getElementById(
@@ -1473,146 +1620,51 @@ console.log("[ATELIER] loader initialized");
     );
 
 
-  const MIN_LOAD_TIME =
-    14000;
+  const videos =
+    Object.values(
+      VIDEO_CONFIG
+    ).map(
+      config=>config.video
+    );
 
 
-  const start =
-    performance.now();
+  let readyCount =
+    0;
 
 
   const messages = [
 
     "INITIALIZING EXPERIENCE",
+
     "LOADING SPACES",
+
     "PREPARING MATERIALS",
+
     "COMPOSING LIGHT",
+
     "REFINING DETAILS",
-    "FINALIZING EXPERIENCE"
+
+    "EXPERIENCE READY"
 
   ];
 
 
-  const assets = [];
+  function updateLoader(){
 
-
-  for(
-    let i = 1;
-    i <= CONFIG.hero.total;
-    i++
-  ){
-
-    assets.push(
-      CONFIG.hero.path(i)
-    );
-
-  }
-
-
-  for(
-    let i = 1;
-    i <= CONFIG.bedroom.total;
-    i++
-  ){
-
-    assets.push(
-      CONFIG.bedroom.path(i)
-    );
-
-  }
-
-
-  for(
-    let i = 1;
-    i <= CONFIG.project.total;
-    i++
-  ){
-
-    assets.push(
-      CONFIG.project.path(i)
-    );
-
-  }
-
-
-  let loaded = 0;
-
-  let realProgress = 0;
-
-  let visualProgress = 0;
-
-
-  assets.forEach(
-    src => {
-
-      const img =
-        new Image();
-
-
-      img.onload =
-      img.onerror = ()=>{
-
-        loaded++;
-
-
-        realProgress =
-          Math.min(
-            100,
-            loaded /
-            assets.length *
-            100
-          );
-
-      };
-
-
-      img.src =
-        src;
-
-    }
-  );
-
-
-  function animate(now){
-
-    visualProgress +=
-      (
-        realProgress -
-        visualProgress
-      ) * .035;
-
-
-    const elapsed =
-      now - start;
-
-
-    const timeProgress =
-      Math.min(
-        99,
-        elapsed /
-        MIN_LOAD_TIME *
-        99
-      );
-
-
-    const shown =
-      Math.min(
-        99,
-        Math.floor(
-          Math.min(
-            visualProgress,
-            timeProgress
-          )
-        )
+    const actual =
+      Math.round(
+        readyCount /
+        videos.length *
+        100
       );
 
 
     percent.textContent =
-      shown;
+      actual;
 
 
     progress.style.width =
-      shown + "%";
+      actual + "%";
 
 
     status.textContent =
@@ -1620,74 +1672,119 @@ console.log("[ATELIER] loader initialized");
         Math.min(
           messages.length - 1,
           Math.floor(
-            shown / 17
+            actual / 20
           )
         )
       ];
 
-
-    requestAnimationFrame(
-      animate
-    );
-
   }
 
 
-  requestAnimationFrame(
-    animate
+  videos.forEach(
+    video=>{
+
+      if(
+        video.readyState >= 1
+      ){
+
+        readyCount++;
+
+        updateLoader();
+
+        return;
+
+      }
+
+
+      video.addEventListener(
+        "loadedmetadata",
+        ()=>{
+
+          readyCount++;
+
+          updateLoader();
+
+        },
+        {
+          once:true
+        }
+      );
+
+    }
   );
+
+
+  const maxWait =
+    setTimeout(
+      finishLoader,
+      4500
+    );
+
+
+  function finishLoader(){
+
+    clearTimeout(
+      maxWait
+    );
+
+
+    percent.textContent =
+      "100";
+
+
+    progress.style.width =
+      "100%";
+
+
+    status.textContent =
+      "EXPERIENCE READY";
+
+
+    setTimeout(
+      ()=>{
+
+        loader.classList.add(
+          "loader-hidden"
+        );
+
+
+        setTimeout(
+          ()=>{
+
+            loader.remove();
+
+          },
+          900
+        );
+
+      },
+      350
+    );
+
+  }
 
 
   window.addEventListener(
     "load",
     ()=>{
 
-      const remaining =
-        Math.max(
-          0,
-          MIN_LOAD_TIME -
-          (
-            performance.now() -
-            start
-          )
-        );
+      if(
+        readyCount >=
+        videos.length
+      ){
 
+        finishLoader();
 
-      setTimeout(()=>{
+      }
 
-        percent.textContent =
-          "100";
-
-
-        progress.style.width =
-          "100%";
-
-
-        status.textContent =
-          "EXPERIENCE READY";
-
-
-        setTimeout(()=>{
-
-          loader.classList.add(
-            "loader-hidden"
-          );
-
-
-          setTimeout(()=>{
-
-            loader.remove();
-
-          },1200);
-
-        },500);
-
-      },remaining);
-
+    },
+    {
+      once:true
     }
   );
 
 })();
+
 
 /* =========================================================
    PAGE SCROLL PROGRESS
@@ -1700,23 +1797,12 @@ console.log("[ATELIER] loader initialized");
       "page-scroll-progress-bar"
     );
 
-  if(!bar){
-
-    console.error(
-      "[ATELIER] Scroll progress bar not found."
-    );
-
-    return;
-
-  }
-
 
   function updateScrollProgress(){
 
     const scrollTop =
       window.pageYOffset ||
       document.documentElement.scrollTop ||
-      document.body.scrollTop ||
       0;
 
 
@@ -1738,14 +1824,19 @@ console.log("[ATELIER] loader initialized");
 
     const percentage =
       scrollable > 0
-        ? (scrollTop / scrollable) * 100
+        ? scrollTop /
+          scrollable *
+          100
         : 0;
 
 
     bar.style.height =
       Math.min(
         100,
-        Math.max(0, percentage)
+        Math.max(
+          0,
+          percentage
+        )
       ) + "%";
 
   }
@@ -1767,11 +1858,6 @@ console.log("[ATELIER] loader initialized");
 
 
   updateScrollProgress();
-
-
-  console.log(
-    "[ATELIER] Scroll progress initialized."
-  );
 
 })();
 
