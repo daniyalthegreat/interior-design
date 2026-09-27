@@ -21,7 +21,6 @@
       --text-light-muted: rgba(246, 242, 236, 0.72);
       --border-light: rgba(24, 23, 19, 0.12);
       --border-dark: rgba(246, 242, 236, 0.14);
-      --accent-gold: #c5a880;
       --font-serif: "Playfair Display", Georgia, serif;
       --font-sans: "DM Sans", -apple-system, BlinkMacSystemFont, sans-serif;
     }
@@ -177,7 +176,7 @@
     }
 
     /* =========================================================
-       NAVIGATION
+       FULLY TRANSPARENT NAVIGATION (NO COVERING BACKGROUND)
        ========================================================= */
     .navbar {
       position: fixed;
@@ -190,12 +189,11 @@
       align-items: center;
       justify-content: space-between;
       z-index: 100;
-      color: var(--text-main);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      background: rgba(244, 238, 231, 0.85);
-      border-bottom: 1px solid var(--border-light);
-      transition: background 0.4s ease;
+      background: transparent;
+      border: none;
+      mix-blend-mode: difference;
+      color: #ffffff;
+      pointer-events: auto;
     }
 
     .logo-container {
@@ -203,7 +201,7 @@
       align-items: center;
       gap: 14px;
       text-decoration: none;
-      color: var(--text-main);
+      color: #ffffff;
     }
 
     .brand-mark {
@@ -217,6 +215,7 @@
     .brand-mark svg {
       width: 100%;
       height: 100%;
+      stroke: #ffffff;
     }
 
     .logo-text-block {
@@ -231,13 +230,15 @@
       letter-spacing: 0.12em;
       text-transform: uppercase;
       line-height: 1.1;
+      color: #ffffff;
     }
 
     .logo-sub {
       font-size: 8.5px;
       letter-spacing: 0.22em;
       text-transform: uppercase;
-      color: var(--text-muted);
+      color: #ffffff;
+      opacity: 0.78;
       font-weight: 500;
       margin-top: 2px;
     }
@@ -251,7 +252,7 @@
 
     .nav-links a {
       position: relative;
-      color: var(--text-main);
+      color: #ffffff;
       text-decoration: none;
       font-size: 11px;
       font-weight: 500;
@@ -267,7 +268,7 @@
       bottom: 0;
       width: 100%;
       height: 1px;
-      background: var(--text-main);
+      background: #ffffff;
       transform: scaleX(0);
       transform-origin: right;
       transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
@@ -285,6 +286,7 @@
       letter-spacing: 0.2em;
       text-transform: uppercase;
       cursor: pointer;
+      color: #ffffff;
     }
 
     /* =========================================================
@@ -661,7 +663,7 @@
     }
 
     /* =========================================================
-       PHOTO WORKS / PORTFOLIO GALLERY (4 REAL IMAGES)
+       PORTFOLIO GALLERY (4 REAL IMAGES)
        ========================================================= */
     .works-gallery {
       background: var(--bg-canvas);
@@ -768,7 +770,7 @@
     }
 
     /* =========================================================
-       SERVICES DIRECTORY (16 COMPREHENSIVE SPECIALTIES)
+       SERVICES DIRECTORY (16 SERVICES)
        ========================================================= */
     .services {
       background: var(--bg-surface);
@@ -854,7 +856,7 @@
     }
 
     /* =========================================================
-       GOOGLE REVIEWS SECTION (5.0 STAR ARCHITECTURAL RATINGS)
+       GOOGLE REVIEWS SECTION
        ========================================================= */
     .reviews-section {
       background: var(--bg-canvas);
@@ -935,9 +937,6 @@
       letter-spacing: 0.08em;
       text-transform: uppercase;
       color: var(--text-main);
-      display: flex;
-      align-items: center;
-      gap: 8px;
     }
 
     .review-tag {
@@ -1168,7 +1167,6 @@
 <nav class="navbar">
   <a href="#" class="logo-container">
     <div class="brand-mark">
-      <!-- Architectural Geometric Monogram / Emblem -->
       <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M6 34V18L20 7L34 18V34H6Z"/>
         <path d="M14 34V22H26V34"/>
@@ -1483,7 +1481,6 @@
   </div>
 
   <div class="reviews-grid">
-    <!-- Review 1 -->
     <div class="review-card">
       <p class="review-quote">
         “I had an amazing experience with Decorate my homes on my kitchen design! From the very first meeting, they understood exactly what I wanted. The final result is beyond beautiful and perfectly reflects my taste. The entire process was seamless and stress-free.”
@@ -1494,7 +1491,6 @@
       </div>
     </div>
 
-    <!-- Review 2 -->
     <div class="review-card">
       <p class="review-quote">
         “I recently decorated my kitchen with Decorate My Homes. Top quality, great service, and an excellent overall experience. Highly recommend their craftsmanship.”
@@ -1505,7 +1501,6 @@
       </div>
     </div>
 
-    <!-- Review 3 -->
     <div class="review-card">
       <p class="review-quote">
         “Decorate My Home is wonderful and provides top-notch quality in renovating your dream house.”
@@ -1516,7 +1511,6 @@
       </div>
     </div>
 
-    <!-- Review 4 -->
     <div class="review-card">
       <p class="review-quote">
         “I had my apartment renovated and Decorate My Home's service and team were really great.”
