@@ -18,7 +18,7 @@
       --text-main: #181713;
       --text-muted: #736b63;
       --text-light: #f6f2ec;
-      --text-light-muted: rgba(246, 242, 236, 0.72);
+      --text-light-muted: rgba(246, 242, 236, 0.75);
       --border-light: rgba(24, 23, 19, 0.12);
       --border-dark: rgba(246, 242, 236, 0.14);
       --font-serif: "Playfair Display", Georgia, serif;
@@ -176,7 +176,7 @@
     }
 
     /* =========================================================
-       FULLY TRANSPARENT NAVIGATION (NO COVERING BACKGROUND)
+       FULLY TRANSPARENT NAVIGATION
        ========================================================= */
     .navbar {
       position: fixed;
@@ -188,9 +188,11 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      z-index: 100;
-      background: transparent;
-      border: none;
+      z-index: 1000;
+      background: transparent !important;
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+      border: none !important;
       mix-blend-mode: difference;
       color: #ffffff;
       pointer-events: auto;
@@ -238,7 +240,7 @@
       letter-spacing: 0.22em;
       text-transform: uppercase;
       color: #ffffff;
-      opacity: 0.78;
+      opacity: 0.8;
       font-weight: 500;
       margin-top: 2px;
     }
@@ -579,7 +581,7 @@
     }
 
     /* =========================================================
-       EDITORIAL SECTIONS (STUDIO / SERVICES / REVIEWS / ETC.)
+       EDITORIAL SECTIONS (STUDIO / SERVICES / REVIEWS)
        ========================================================= */
     .section {
       position: relative;
@@ -663,7 +665,7 @@
     }
 
     /* =========================================================
-       PORTFOLIO GALLERY (4 REAL IMAGES)
+       PORTFOLIO GALLERY (USES YOUR 4 LOCAL IMAGES)
        ========================================================= */
     .works-gallery {
       background: var(--bg-canvas);
@@ -738,12 +740,12 @@
       object-fit: cover;
       display: block;
       transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s ease;
-      filter: grayscale(15%) contrast(1.02);
+      filter: grayscale(12%) contrast(1.03);
     }
 
     .work-card:hover .work-image-frame img {
       transform: scale(1.035);
-      filter: grayscale(0%) contrast(1.04);
+      filter: grayscale(0%) contrast(1.05);
     }
 
     .work-meta-row {
@@ -770,7 +772,7 @@
     }
 
     /* =========================================================
-       SERVICES DIRECTORY (16 SERVICES)
+       SERVICES DIRECTORY (16 SPECIALTIES)
        ========================================================= */
     .services {
       background: var(--bg-surface);
@@ -947,7 +949,7 @@
     }
 
     /* =========================================================
-       LOCATION & STUDIO MAP
+       LOCATION & MAP
        ========================================================= */
     .location-section {
       background: var(--bg-surface);
@@ -1252,7 +1254,7 @@
   </div>
 </section>
 
-<!-- PORTFOLIO GALLERY (REAL COMMISSIONED WORKS) -->
+<!-- PORTFOLIO GALLERY (4 LOCAL IMAGES) -->
 <section class="section works-gallery" id="works">
   <div class="works-header">
     <div>
@@ -1266,7 +1268,7 @@
     <!-- Image 1: Kitchen -->
     <div class="work-card">
       <div class="work-image-frame">
-        <img src="input_file_0.png" alt="Decorate My Homes Kitchen Architecture">
+        <img src="img1.jfif" alt="Decorate My Homes Kitchen Architecture">
       </div>
       <div class="work-meta-row">
         <h3 class="work-title">The Culinary Studio</h3>
@@ -1277,7 +1279,7 @@
     <!-- Image 2: Bedroom Fluted -->
     <div class="work-card">
       <div class="work-image-frame">
-        <img src="input_file_1.png" alt="Decorate My Homes Bedroom Design">
+        <img src="img2.jfif" alt="Decorate My Homes Bedroom Design">
       </div>
       <div class="work-meta-row">
         <h3 class="work-title">The Slatted Sanctuary</h3>
@@ -1288,7 +1290,7 @@
     <!-- Image 3: Media Wall & Classical Rug -->
     <div class="work-card">
       <div class="work-image-frame">
-        <img src="input_file_2.png" alt="Decorate My Homes Media Console">
+        <img src="img3.jfif" alt="Decorate My Homes Media Console">
       </div>
       <div class="work-meta-row">
         <h3 class="work-title">The Media Chamber</h3>
@@ -1299,7 +1301,7 @@
     <!-- Image 4: Grand Marble Foyer -->
     <div class="work-card">
       <div class="work-image-frame">
-        <img src="input_file_3.png" alt="Decorate My Homes Grand Marble Foyer">
+        <img src="img4.jfif" alt="Decorate My Homes Grand Marble Foyer">
       </div>
       <div class="work-meta-row">
         <h3 class="work-title">The Grand Vestibule</h3>
@@ -1340,7 +1342,7 @@
   </div>
 </section>
 
-<!-- SERVICES (ALL 16 SERVICES EMBEDDED) -->
+<!-- SERVICES (16 SERVICES DIRECTORY) -->
 <section class="section services" id="services">
   <div class="section-label">Capabilities</div>
 
